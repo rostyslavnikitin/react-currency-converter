@@ -1,23 +1,33 @@
 import React, { Component } from "react";
-import currencies from "../currencies";
-export default class Converter extends Component {
-    render() {
-        const currenciesOptions = [];
+import CurrencyConverter from "../currencies";
 
-        for(let c of currencies) {
-            currenciesOptions.push(<option value={c}>{c}</option>)
-        }
+export default class Converter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { data: [] };
+    }
+
+    componentDidMount () {
+        const cv = new CurrencyConverter();
+        cv.currenciesList()
+            .then(data =>  {
+                this.setState({data});
+            });
+    }
+
+    render() {
+
 
         return (
             <div>
                 <form>
                     <input name="c_from"/>
                     <select name="from">
-                        {currenciesOptions}
+                        {this.state.data.map((code) => (<option value={code} key={code}>{code}</option>))}
                     </select>
                     <input name="c_to" readOnly="readOnly"/>
                     <select name="to">
-                        {currenciesOptions}
+                        {this.state.data.map((code) => (<option value={code} key={code}>{code}</option>))}
                     </select>
                 </form>
             </div>
