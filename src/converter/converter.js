@@ -15,7 +15,7 @@ export default class Converter extends Component {
                     <select name="from">
                         {currenciesOptions}
                     </select>
-                    <input name="c_to"/>
+                    <input name="c_to" readOnly="readOnly"/>
                     <select name="to">
                         {currenciesOptions}
                     </select>
