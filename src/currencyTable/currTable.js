@@ -10,7 +10,7 @@ export default class CurrTable extends Component {
     constructor(props) {
         super(props);
         this.cv = new CurrencyConverter();
-        this.state = { currencies: [], sourceCurrency: "UAH", rates: {} };
+        this.state = { currencies: [], sourceCurrency: store.getState().baseCurrency, rates: {} };
     }
 
     componentDidMount() {
@@ -40,10 +40,11 @@ export default class CurrTable extends Component {
     render() {
         return (
             <ul className="currTable">
-                {this.state.currencies.map((code) => (
+                {/* filter base currency */}
+                {this.state.currencies.filter((code) => code !== this.state.sourceCurrency).map((code) => (
                     <li key={code} className={"currencyRow" + (store.getState().favoriteCurrencies.includes(code) ? " currencyFavorite" : "")}>
                         <div className="row">
-                            <div className="col-3">{code} ({1/this.state.rates[code]})</div>
+                            <div className="col-3">{code} ({1/this.state.rates[code]} {this.state.sourceCurrency.toLowerCase()})</div>
                             <div className="col-6">
                                 <div className="currencyTableActions">
                                     <Button onClick={() => this.add2fav(code)}><MdFavorite/></Button>
@@ -55,7 +56,7 @@ export default class CurrTable extends Component {
 
 
                     </li>
-                ))}
+                    ))}
             </ul>
         );
     }
