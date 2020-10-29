@@ -8,13 +8,14 @@ import {
     Redirect,
     Link
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 class App extends Component {
     render() {
         const { history } = this.props;
         return (
-            <div className="App">
+            <div className="container">
                 <header className="x">
                     <Link to="/converter">Converter</Link>
                     <Link to="/currencies">Currencies list</Link>
