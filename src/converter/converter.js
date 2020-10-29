@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import CurrencyConverter from "../currencies";
+import store from "../store/store";
 
 export default class Converter extends Component {
     constructor(props) {
         super(props);
         this.cv = new CurrencyConverter();
 
-        this.state = { currencies: [], valueFrom: 100, rate: 0, currSource: "USD", currDest: "UAH" };
+        this.state = { currencies: [], valueFrom: 100, rate: 0, currSource: store.getState().baseCurrency, currDest: "USD" };
 
         this.s_ref = React.createRef();
         this.d_ref = React.createRef();
@@ -46,7 +47,9 @@ export default class Converter extends Component {
                     from: <b>{this.state.currSource}</b><br/>
                     to: <b>{this.state.currDest}</b><br/>
                     rate: <b>{this.state.rate}</b><br/>
-                    buyRate: <b>{1/this.state.rate}</b>
+                    buyRate: <b>{1/this.state.rate}</b><br/>
+                    base currency: {store.getState().baseCurrency}<br/>
+                    favorite currencies: {store.getState().favoriteCurrencies}<br/>
                 </div>
                 <form>
                     <input name="c_from" value={this.state.valueFrom} onChange={this.fromValueChange} type="number" />
