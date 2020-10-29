@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CurrencyConverter from "../currencies";
-import store from "../store/store";
+import { store } from "../store/store";
 
 export default class Converter extends Component {
     constructor(props) {

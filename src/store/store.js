@@ -1,5 +1,12 @@
 import { createStore } from "redux";
 import { SET_BASE_CURRENCY, ADD_FAVORITE_CURRENCY } from "./actions/converter";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
 
 function reducer(state, action) {
     switch(action.type) {
@@ -10,6 +17,7 @@ function reducer(state, action) {
     }
 }
 const initialState = { baseCurrency: 'UAH', favoriteCurrencies: [] };
-const store = createStore(reducer, initialState);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default store;
+export const store = createStore(persistedReducer, initialState);
+export const persistor = persistStore(store);
