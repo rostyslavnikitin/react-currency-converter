@@ -1,3 +1,19 @@
 .currTable {
     list-style-type: none;
 }
+
+.currencyRow .currencyTableActions {
+    visibility: hidden;
+}
+
+.currencyFavorite {
+    background-color: palegoldenrod;
+}
+
+.currencyRow:hover {
+    background-color: lightgray;
+}
+
+.currencyRow:hover .currencyTableActions {
+    visibility: visible;
+}
