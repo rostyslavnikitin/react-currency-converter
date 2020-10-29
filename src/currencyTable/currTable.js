@@ -27,7 +27,7 @@ export default class CurrTable extends Component {
 
     render() {
         return (
-            <ul class="currTable">
+            <ul className="currTable">
                 {this.state.currencies.map((code) => (<li key={code}>{code} ({1/this.state.rates[code]})</li>))}
             </ul>
         );
