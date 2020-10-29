@@ -6,7 +6,7 @@ export default class Converter extends Component {
         super(props);
         this.cv = new CurrencyConverter();
 
-        this.state = { data: [], valueFrom: 100, rate: 0, currSource: "USD", currDest: "UAH" };
+        this.state = { currencies: [], valueFrom: 100, rate: 0, currSource: "USD", currDest: "UAH" };
 
         this.s_ref = React.createRef();
         this.d_ref = React.createRef();
@@ -18,10 +18,7 @@ export default class Converter extends Component {
     };
 
     componentDidMount = async () => {
-        this.cv.currenciesList()
-            .then(data =>  {
-                this.setState({data});
-            });
+        await this.setState({ currencies: this.cv.currenciesList() });
         await this.updateResult();
     };
 
@@ -54,11 +51,11 @@ export default class Converter extends Component {
                 <form>
                     <input name="c_from" value={this.state.valueFrom} onChange={this.fromValueChange} type="number" />
                     <select value={this.state.currSource} name="from" onChange={this.fromCurrChange}>
-                        {this.state.data.map((code) => (<option value={code} key={code}>{code}</option>))}
+                        {this.state.currencies.map((code) => (<option value={code} key={code}>{code}</option>))}
                     </select>
                     <input name="c_to" readOnly="readOnly" value={this.state.valueFrom * this.state.rate}/>
                     <select value={this.state.currDest} name="to" onChange={this.toCurrChange}>
-                        {this.state.data.map((code) => (<option value={code} key={code}>{code}</option>))}
+                        {this.state.currencies.map((code) => (<option value={code} key={code}>{code}</option>))}
                     </select>
                 </form>
             </div>
