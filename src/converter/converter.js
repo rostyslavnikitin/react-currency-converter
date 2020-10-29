@@ -49,7 +49,7 @@ export default class Converter extends Component {
                     rate: <b>{this.state.rate}</b><br/>
                     buyRate: <b>{1/this.state.rate}</b><br/>
                     base currency: {store.getState().baseCurrency}<br/>
-                    favorite currencies: {store.getState().favoriteCurrencies}<br/>
+                    favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
                 <form>
                     <input name="c_from" value={this.state.valueFrom} onChange={this.fromValueChange} type="number" />
