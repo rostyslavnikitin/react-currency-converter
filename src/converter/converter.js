@@ -46,9 +46,10 @@ export default class Converter extends Component {
         return (
             <div>
                 <div>
-                    from: <b>{this.state.currSource}</b>
-                    to: <b>{this.state.currDest}</b>
-                    rate: <b>{this.state.rate}</b>
+                    from: <b>{this.state.currSource}</b><br/>
+                    to: <b>{this.state.currDest}</b><br/>
+                    rate: <b>{this.state.rate}</b><br/>
+                    buyRate: <b>{1/this.state.rate}</b>
                 </div>
                 <form>
                     <input name="c_from" value={this.state.valueFrom} onChange={this.fromValueChange} type="number" />
