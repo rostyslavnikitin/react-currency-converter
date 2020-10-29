@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./currTable.css";
 import CurrencyConverter from "../currencies";
 
 export default class CurrTable extends Component {
@@ -26,7 +27,7 @@ export default class CurrTable extends Component {
 
     render() {
         return (
-            <ul>
+            <ul class="currTable">
                 {this.state.currencies.map((code) => (<li key={code}>{code} ({1/this.state.rates[code]})</li>))}
             </ul>
         );
