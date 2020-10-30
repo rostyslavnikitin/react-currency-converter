@@ -46,7 +46,16 @@ export default class CurrTable extends Component {
             <ul className="currTable">
                 favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 {/* filter base currency */}
-                {this.state.currencies.filter((code) => code !== this.state.sourceCurrency).map((code) => (
+                {this.state.currencies
+                    // place favorites to the top of the page
+                    .sort((code) => {
+                            if (store.getState().favoriteCurrencies.includes(code)) {
+                                return -1 }
+                            else {
+                                return 1;
+                            }
+                        }
+                    ).filter((code) => code !== this.state.sourceCurrency).map((code) => (
                     <li key={code} className={"currencyRow" + (store.getState().favoriteCurrencies.includes(code) ? " currencyFavorite" : "")}>
                         <div className="row">
                             <div className="col-3">
