@@ -46,8 +46,8 @@ export default class Converter extends Component {
                 <div>
                     from: <b>{this.state.currSource}</b><br/>
                     to: <b>{this.state.currDest}</b><br/>
-                    rate: <b>{this.state.rate}</b><br/>
-                    buyRate: <b>{1/this.state.rate}</b><br/>
+                    rate: <b>{this.state.rate.toFixed(3)}</b><br/>
+                    buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
                     base currency: {store.getState().baseCurrency}<br/>
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>

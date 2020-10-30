@@ -51,7 +51,7 @@ export default class CurrTable extends Component {
                         <div className="row">
                             <div className="col-3">
                                 {code} {this.state.rates[code] ?
-                                    `(${1/this.state.rates[code]} ${this.state.sourceCurrency.toLowerCase()})`
+                                    `(${(1/this.state.rates[code]).toFixed(2)} ${this.state.sourceCurrency.toLowerCase()})`
                                 : <Spinner animation="border" size="sm" />}
                             </div>
                             <div className="col-6">
