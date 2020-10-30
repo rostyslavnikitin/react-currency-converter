@@ -10,8 +10,8 @@ const persistConfig = {
 
 function reducer(state, action) {
     switch(action.type) {
-        case SET_BASE_CURRENCY: return { baseCurrency: action.id };
-        case ADD_FAVORITE_CURRENCY: return { favoriteCurrencies:  [...state.favoriteCurrencies,  action.value] };
+        case SET_BASE_CURRENCY: return {...state, baseCurrency: action.code };
+        case ADD_FAVORITE_CURRENCY: return {...state, favoriteCurrencies:  [action.code, ...state.favoriteCurrencies]};
 
         default: return state;
     }
