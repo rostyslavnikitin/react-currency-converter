@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import { SET_BASE_CURRENCY, ADD_FAVORITE_CURRENCY } from "./actions/converter";
+import { SET_BASE_CURRENCY, TOGGLE_FAVORITE_CURRENCY } from "./actions/converter";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
@@ -11,7 +11,7 @@ const persistConfig = {
 function reducer(state, action) {
     switch(action.type) {
         case SET_BASE_CURRENCY: return {...state, baseCurrency: action.code };
-        case ADD_FAVORITE_CURRENCY: return {...state, favoriteCurrencies:  [action.code, ...state.favoriteCurrencies]};
+        case TOGGLE_FAVORITE_CURRENCY: return {...state, favoriteCurrencies:  [action.code, ...state.favoriteCurrencies]};
 
         default: return state;
     }
