@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { MdFavorite } from "react-icons/md";
 import { store } from "../store/store";
 import { Spinner } from 'react-bootstrap';
+import "currency-flags/dist/currency-flags.min.css";
 import { TOGGLE_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/converter";
 
 export default class CurrTable extends Component {
@@ -65,7 +66,9 @@ export default class CurrTable extends Component {
                         key={code}
                         className={className}>
                         <div className="row">
-                            <div className="col-1">
+                            <div className="col-sm-2">
+                                <div className={`currency-flag currency-flag-${code.toLowerCase()}`} style={{  'margin-bottom': '-0.15em' }}> </div>
+                                &nbsp;
                                 {code}
                             </div>
                             <div className="col-2">

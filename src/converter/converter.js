@@ -45,7 +45,10 @@ export default class Converter extends Component {
                     to: <b>{this.state.currDest}</b><br/>
                     rate: <b>{this.state.rate.toFixed(3)}</b><br/>
                     buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
-                    base currency: {store.getState().baseCurrency}<br/>
+                    base currency: {store.getState().baseCurrency}
+                    &nbsp;
+                    <div className={`currency-flag currency-flag-${store.getState().baseCurrency.toLowerCase()}`}
+                         style={{  'margin-bottom': '-0.15em' }}> </div><br/>
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
                 <form>
