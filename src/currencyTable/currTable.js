@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./currTable.css";
-import CurrencyConverter from "../currencies";
+import { currenciesList, getLatestRate } from "../currencies";
 import { Button } from 'react-bootstrap';
 import { MdFavorite } from "react-icons/md";
 import { store } from "../store/store";
@@ -10,19 +10,18 @@ import { TOGGLE_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/co
 export default class CurrTable extends Component {
     constructor(props) {
         super(props);
-        this.cv = new CurrencyConverter();
         this.state = { currencies: [], sourceCurrency: store.getState().baseCurrency, rates: {} };
     }
 
     componentDidMount() {
-        this.setState({ currencies: this.cv.currenciesList() });
-        this.cv.currenciesList().forEach((code) => {
+        this.setState({ currencies: currenciesList() });
+        currenciesList().forEach((code) => {
             this.getRate(code);
         });
     }
 
     getRate = (code) => {
-        this.cv.getLatestRate(this.state.sourceCurrency, code)
+        getLatestRate(this.state.sourceCurrency, code)
             .then((rate) => {
                 this.setState({ rates: { ...this.state.rates, [code]: rate } });
             });

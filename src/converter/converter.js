@@ -1,25 +1,22 @@
 import React, { Component } from "react";
-import CurrencyConverter from "../currencies";
+import { currenciesList, getLatestRate } from "../currencies";
 import { store } from "../store/store";
 
 export default class Converter extends Component {
     constructor(props) {
         super(props);
-        this.cv = new CurrencyConverter();
-
         this.state = { currencies: [], valueFrom: 100, rate: 0, currSource: store.getState().baseCurrency, currDest: "USD" };
-
         this.s_ref = React.createRef();
         this.d_ref = React.createRef();
     }
 
     updateResult = async () => {
-        const data = await this.cv.getLatestRate(this.state.currSource, this.state.currDest);
+        const data = await getLatestRate(this.state.currSource, this.state.currDest);
         this.setState({ rate: data });
     };
 
     componentDidMount = async () => {
-        await this.setState({ currencies: this.cv.currenciesList() });
+        await this.setState({ currencies: currenciesList() });
         await this.updateResult();
     };
 
