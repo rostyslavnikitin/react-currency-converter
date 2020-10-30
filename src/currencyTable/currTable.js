@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { MdFavorite } from "react-icons/md";
 import { store } from "../store/store";
 import { Spinner } from 'react-bootstrap';
-import { ADD_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/converter";
+import { TOGGLE_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/converter";
 
 export default class CurrTable extends Component {
     constructor(props) {
