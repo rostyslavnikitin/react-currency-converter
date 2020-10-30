@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "currency-codes": "^2.1.0",
     "currency-flags": "^2.1.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",

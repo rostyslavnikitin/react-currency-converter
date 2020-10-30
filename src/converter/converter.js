@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { currenciesList, getLatestRate } from "../currencies";
+import codes from "currency-codes";
 import { store } from "../store/store";
 
 export default class Converter extends Component {
@@ -47,7 +48,9 @@ export default class Converter extends Component {
                     buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
                     base currency: {store.getState().baseCurrency}
                     &nbsp;
-                    <div className={`currency-flag currency-flag-${store.getState().baseCurrency.toLowerCase()}`}
+                    <div
+                        title={`${codes.code(store.getState().baseCurrency.toLowerCase()).currency}`}
+                        className={`currency-flag currency-flag-${store.getState().baseCurrency.toLowerCase()}`}
                          style={{  'margin-bottom': '-0.15em' }}> </div><br/>
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
