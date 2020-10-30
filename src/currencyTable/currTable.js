@@ -44,7 +44,11 @@ export default class CurrTable extends Component {
                 {this.state.currencies.filter((code) => code !== this.state.sourceCurrency).map((code) => (
                     <li key={code} className={"currencyRow" + (store.getState().favoriteCurrencies.includes(code) ? " currencyFavorite" : "")}>
                         <div className="row">
-                            <div className="col-3">{code} ({1/this.state.rates[code]} {this.state.sourceCurrency.toLowerCase()})</div>
+                            <div className="col-3">
+                                {code} {this.state.rates[code] ?
+                                    `(${1/this.state.rates[code]} ${this.state.sourceCurrency.toLowerCase()})`
+                                : ''}
+                            </div>
                             <div className="col-6">
                                 <div className="currencyTableActions">
                                     <Button onClick={() => this.add2fav(code)}><MdFavorite/></Button>
