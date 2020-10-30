@@ -21,8 +21,14 @@ class App extends Component {
                     <Link to="/currencies">Currencies list</Link>
                 </header>
                 <Switch>
-                    <Route history={history} path="/currencies" component={CurrTable} />
-                    <Route history={history} path="/converter" component={Converter} />
+                    <Route
+                        history={history}
+                        path="/currencies"
+                        component={CurrTable} />
+                    <Route
+                        history={history}
+                        path="/converter" component={Converter}
+                    />
                     <Redirect from='/' to='/converter'/>
                 </Switch>
             </div>
