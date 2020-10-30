@@ -4,6 +4,7 @@ import CurrencyConverter from "../currencies";
 import { Button } from 'react-bootstrap';
 import { MdFavorite } from "react-icons/md";
 import { store } from "../store/store";
+import { Spinner } from 'react-bootstrap';
 import { ADD_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/converter";
 
 export default class CurrTable extends Component {
@@ -18,19 +19,16 @@ export default class CurrTable extends Component {
         this.cv.currenciesList().forEach((code) => {
             this.getRate(code);
         });
-        console.log('rates: ', this.state.rates)
     }
 
     getRate = (code) => {
         this.cv.getLatestRate(this.state.sourceCurrency, code)
             .then((rate) => {
-                console.log(code, rate);
                 this.setState({ rates: { ...this.state.rates, [code]: rate } });
             });
     };
 
     add2fav = (code) => {
-        console.log(code)
         store.dispatch({
              type: ADD_FAVORITE_CURRENCY,
              value: code
@@ -47,7 +45,7 @@ export default class CurrTable extends Component {
                             <div className="col-3">
                                 {code} {this.state.rates[code] ?
                                     `(${1/this.state.rates[code]} ${this.state.sourceCurrency.toLowerCase()})`
-                                : ''}
+                                : <Spinner animation="border" size="sm" />}
                             </div>
                             <div className="col-6">
                                 <div className="currencyTableActions">
