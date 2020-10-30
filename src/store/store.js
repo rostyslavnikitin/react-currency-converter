@@ -16,8 +16,7 @@ function reducer(state, action) {
             if (fv.includes(action.code)) {
                 return { ...state, favoriteCurrencies: fv.filter(code => code !== action.code)};
             } else {
-                state.favoriteCurrencies.push(action.code);
-                return state;
+                return {...state, favoriteCurrencies: [ ...fv, action.code ]}
             }
         default: return state;
     }
