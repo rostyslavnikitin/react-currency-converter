@@ -31,8 +31,15 @@ export default class CurrTable extends Component {
     add2fav = (code) => {
         store.dispatch({
              type: ADD_FAVORITE_CURRENCY,
-             value: code
+             code: code
         });
+    };
+
+    setBaseCurrency = (code) => {
+      store.dispatch({
+          type: SET_BASE_CURRENCY,
+          code: code
+      })
     };
 
     render() {
@@ -51,7 +58,7 @@ export default class CurrTable extends Component {
                                 <div className="currencyTableActions">
                                     <Button onClick={() => this.add2fav(code)}><MdFavorite/></Button>
                                     &nbsp;
-                                    <Button>make primary</Button>
+                                    <Button onClick={() => this.setBaseCurrency(code)}>make primary</Button>
                             </div></div>
 
                         </div>
