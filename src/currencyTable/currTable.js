@@ -41,26 +41,33 @@ export default class CurrTable extends Component {
       })
     };
 
+    isNotBase = (code) => {
+        return code !== this.state.sourceCurrency;
+    };
+
+    isFav = (code) => {
+        return store.getState().favoriteCurrencies.includes(code);
+    };
+
     render() {
-        return (
-            <ul className="currTable">
-                favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
-                {/* filter base currency */}
-                {this.state.currencies
-                    // place favorites to the top of the page
-                    .sort((code) => {
-                            if (store.getState().favoriteCurrencies.includes(code)) {
-                                return -1 }
-                            else {
-                                return 1;
-                            }
+        const r = (currencies, className) => {
+            return (currencies
+                // alphabetically sort
+                .sort((code, next) => {
+                        if (code < next) {
+                            return -1 }
+                        else {
+                            return 1;
                         }
-                    ).filter((code) => code !== this.state.sourceCurrency).map((code) => (
-                    <li key={code} className={"currencyRow" + (store.getState().favoriteCurrencies.includes(code) ? " currencyFavorite" : "")}>
+                    }
+                ).map((code) => (
+                    <li
+                        key={code}
+                        className={className}>
                         <div className="row">
                             <div className="col-3">
                                 {code} {this.state.rates[code] ?
-                                    `(${(1/this.state.rates[code]).toFixed(2)} ${this.state.sourceCurrency.toLowerCase()})`
+                                `(${(1/this.state.rates[code]).toFixed(2)} ${this.state.sourceCurrency.toLowerCase()})`
                                 : <Spinner animation="border" size="sm" />}
                             </div>
                             <div className="col-6">
@@ -68,13 +75,24 @@ export default class CurrTable extends Component {
                                     <Button onClick={() => this.toggleFav(code)}><MdFavorite/></Button>
                                     &nbsp;
                                     <Button onClick={() => this.setBaseCurrency(code)}>make primary</Button>
-                            </div></div>
+                                </div></div>
 
                         </div>
-
-
                     </li>
-                    ))}
+                )));
+        };
+        return (
+
+            <ul className="currTable">
+                favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
+                {/* display favourite currencies */}
+                {r(
+                    this.state.currencies.filter((code) => this.isNotBase(code) && this.isFav(code)),
+                    'currencyRow currencyFavorite')}
+                {/* display other currencies */}
+                {r(
+                    this.state.currencies.filter((code) => this.isNotBase(code) && !this.isFav(code)),
+                    'currencyRow')}
             </ul>
         );
     }
