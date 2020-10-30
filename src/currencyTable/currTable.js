@@ -45,6 +45,7 @@ export default class CurrTable extends Component {
     render() {
         return (
             <ul className="currTable">
+                favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 {/* filter base currency */}
                 {this.state.currencies.filter((code) => code !== this.state.sourceCurrency).map((code) => (
                     <li key={code} className={"currencyRow" + (store.getState().favoriteCurrencies.includes(code) ? " currencyFavorite" : "")}>
@@ -70,3 +71,4 @@ export default class CurrTable extends Component {
         );
     }
 }
+

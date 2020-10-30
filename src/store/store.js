@@ -11,8 +11,14 @@ const persistConfig = {
 function reducer(state, action) {
     switch(action.type) {
         case SET_BASE_CURRENCY: return {...state, baseCurrency: action.code };
-        case TOGGLE_FAVORITE_CURRENCY: return {...state, favoriteCurrencies:  [action.code, ...state.favoriteCurrencies]};
-
+        case TOGGLE_FAVORITE_CURRENCY:
+            const fv = state.favoriteCurrencies;
+            if (fv.includes(action.code)) {
+                return { ...state, favoriteCurrencies: fv.filter(code => code !== action.code)};
+            } else {
+                state.favoriteCurrencies.push(action.code);
+                return state;
+            }
         default: return state;
     }
 }

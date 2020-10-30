@@ -10,7 +10,7 @@ import {
     BrowserRouter,
 } from "react-router-dom";
 
-ReactDOM.render(
+const render = () => ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
@@ -27,3 +27,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+store.subscribe(render);
