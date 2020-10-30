@@ -65,10 +65,14 @@ export default class CurrTable extends Component {
                         key={code}
                         className={className}>
                         <div className="row">
-                            <div className="col-3">
-                                {code} {this.state.rates[code] ?
-                                `(${(1/this.state.rates[code]).toFixed(2)} ${this.state.sourceCurrency.toLowerCase()})`
-                                : <Spinner animation="border" size="sm" />}
+                            <div className="col-1">
+                                {code}
+                            </div>
+                            <div className="col-2">
+                                {this.state.rates[code] ?
+                                    `(${(1/this.state.rates[code]).toFixed(2)}
+                                        ${this.state.sourceCurrency.toLowerCase()})`
+                                    : <Spinner animation="border" size="sm" />}
                             </div>
                             <div className="col-6">
                                 <div className="currencyTableActions">
