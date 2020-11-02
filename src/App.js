@@ -10,16 +10,14 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Navbar from "./navbar/navbar";
 
 class App extends Component {
     render() {
         const { history } = this.props;
         return (
             <div className="container">
-                <header className="x">
-                    <Link to="/converter">Converter</Link>
-                    <Link to="/currencies">Currencies list</Link>
-                </header>
+                <Navbar />
                 <Switch>
                     <Route
                         history={history}
