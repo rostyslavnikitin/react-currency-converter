@@ -42,8 +42,20 @@ export default class Converter extends Component {
         return (
             <div>
                 <div>
-                    from: <b>{this.state.currSource}</b><br/>
-                    to: <b>{this.state.currDest}</b><br/>
+                    from: <b>{this.state.currSource}</b>
+                    &nbsp;
+                    <div
+                        title={`${this.state.currSource.toLowerCase()}`}
+                        className={`currency-flag currency-flag-${this.state.currSource.toLowerCase()}`}
+                        style={{  'margin-bottom': '-0.15em' }}> </div>
+                    <br/>
+                    to: <b>{this.state.currDest}</b>
+                    &nbsp;
+                    <div
+                        title={`${codes.code(this.state.currDest.toLowerCase()).currency}`}
+                        className={`currency-flag currency-flag-${this.state.currDest.toLowerCase()}`}
+                        style={{  'margin-bottom': '-0.15em' }}> </div>
+                    <br/>
                     rate: <b>{this.state.rate.toFixed(3)}</b><br/>
                     buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
                     base currency: {store.getState().baseCurrency}
