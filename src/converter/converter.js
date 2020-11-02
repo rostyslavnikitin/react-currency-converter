@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { currenciesList, getLatestRate } from "../currencies";
-import codes from "currency-codes";
+import Flag from "../flag/flag";
 import { store } from "../store/store";
 
 export default class Converter extends Component {
@@ -44,26 +44,17 @@ export default class Converter extends Component {
                 <div>
                     from: <b>{this.state.currSource}</b>
                     &nbsp;
-                    <div
-                        title={`${this.state.currSource.toLowerCase()}`}
-                        className={`currency-flag currency-flag-${this.state.currSource.toLowerCase()}`}
-                        style={{  'margin-bottom': '-0.15em' }}> </div>
+                    <Flag flag={this.state.currSource} /><br/>
                     <br/>
                     to: <b>{this.state.currDest}</b>
                     &nbsp;
-                    <div
-                        title={`${codes.code(this.state.currDest.toLowerCase()).currency}`}
-                        className={`currency-flag currency-flag-${this.state.currDest.toLowerCase()}`}
-                        style={{  'margin-bottom': '-0.15em' }}> </div>
+                    <Flag flag={this.state.currDest} /><br/>
                     <br/>
                     rate: <b>{this.state.rate.toFixed(3)}</b><br/>
                     buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
                     base currency: {store.getState().baseCurrency}
                     &nbsp;
-                    <div
-                        title={`${codes.code(store.getState().baseCurrency.toLowerCase()).currency}`}
-                        className={`currency-flag currency-flag-${store.getState().baseCurrency.toLowerCase()}`}
-                         style={{  'margin-bottom': '-0.15em' }}> </div><br/>
+                    <Flag flag={store.getState().baseCurrency} /><br/>
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
                 <form>

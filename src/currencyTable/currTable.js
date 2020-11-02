@@ -8,6 +8,7 @@ import { Spinner } from 'react-bootstrap';
 import "currency-flags/dist/currency-flags.min.css";
 import codes from "currency-codes";
 import { TOGGLE_FAVORITE_CURRENCY, SET_BASE_CURRENCY } from "../store/actions/converter";
+import Flag from "../flag/flag";
 
 export default class CurrTable extends Component {
     constructor(props) {
@@ -69,10 +70,9 @@ export default class CurrTable extends Component {
                         <div className="row">
                             <div
                                 className="col-sm-2"
-                                title={`${codes.code(code).currency}`}>
-                                <div
-                                    className={`currency-flag currency-flag-${code.toLowerCase()}`}
-                                    style={{  'margin-bottom': '-0.15em' }}> </div>
+                                title={`${codes.code(code).currency}`}
+                            >
+                                <Flag flag={code} />
                                 &nbsp;
                                 {code}
                             </div>
