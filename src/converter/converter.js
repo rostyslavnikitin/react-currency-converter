@@ -55,14 +55,48 @@ export default class Converter extends Component {
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
                 <form>
-                    <input name="c_from" value={this.state.valueFrom} onChange={this.fromValueChange} type="number" />
-                    <select value={this.state.currSource} name="from" onChange={this.fromCurrChange}>
-                        {this.state.currencies.map((code) => (<option value={code} key={code}>{code}</option>))}
-                    </select>
-                    <input name="c_to" readOnly="readOnly" value={this.state.valueFrom * this.state.rate}/>
-                    <select value={this.state.currDest} name="to" onChange={this.toCurrChange}>
-                        {this.state.currencies.map((code) => (<option value={code} key={code}>{code}</option>))}
-                    </select>
+                    <div className="row">
+                        <div className="col-1" style={{ marginTop: '0.3em' }}>Change</div>
+                        <div className="col-2">
+                            <input
+                                className="form-control"
+                                name="c_from"
+                                value={this.state.valueFrom}
+                                onChange={this.fromValueChange} type="number"
+                            />
+                        </div>
+                        <div className="col-2">
+                            <select
+                                className="form-control"
+                                value={this.state.currSource}
+                                name="from"
+                                onChange={this.fromCurrChange}
+                            >
+                                {this.state.currencies.map((code) => (<option value={code} key={code}>{code}</option>))}
+                            </select>
+                        </div>
+                        <div className="col-1" style={{ marginTop: '0.3em' }}>TO</div>
+                        <div className="col-2">
+                            <input
+                                className="form-control"
+                                name="c_to"
+                                readOnly="readOnly"
+                                value={this.state.valueFrom * this.state.rate}
+                            />
+                        </div>
+                        <div className="col-2">
+                            <select
+                                className="form-control"
+                                value={this.state.currDest}
+                                name="to"
+                                onChange={this.toCurrChange}
+                            >
+                                {this.state.currencies.map((code) => (
+                                    <option value={code} key={code}>{code}</option>)
+                                )}
+                            </select>
+                        </div>
+                    </div>
                 </form>
             </div>
         );
