@@ -42,19 +42,16 @@ export default class Converter extends Component {
         return (
             <div>
                 <div>
-                    from: <b>{this.state.currSource}</b>
-                    &nbsp;
-                    <Flag flag={this.state.currSource} /><br/>
+                    from: <b>{this.state.currSource}</b>&nbsp;<Flag flag={this.state.currSource} />
                     <br/>
-                    to: <b>{this.state.currDest}</b>
-                    &nbsp;
-                    <Flag flag={this.state.currDest} /><br/>
+                    to: <b>{this.state.currDest}</b>&nbsp;<Flag flag={this.state.currDest} />
                     <br/>
-                    rate: <b>{this.state.rate.toFixed(3)}</b><br/>
-                    buyRate: <b>{(1/this.state.rate).toFixed(2)}</b><br/>
-                    base currency: {store.getState().baseCurrency}
-                    &nbsp;
-                    <Flag flag={store.getState().baseCurrency} /><br/>
+                    rate: <b>{this.state.rate.toFixed(3)}</b>
+                    <br/>
+                    buyRate: <b>{(1/this.state.rate).toFixed(2)}</b>
+                    <br/>
+                    base currency: {store.getState().baseCurrency}&nbsp;<Flag flag={store.getState().baseCurrency} />
+                    <br/>
                     favorite currencies: {store.getState().favoriteCurrencies.join(',')}<br/>
                 </div>
                 <form>
